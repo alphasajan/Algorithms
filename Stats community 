@@ -1,0 +1,465 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Untitled5.ipynb",
+      "provenance": [],
+      "authorship_tag": "ABX9TyOah9+EtlTKTeFn8pQa3R3P",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/alphasajan/Algorithms/blob/master/Stats%20community%20\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Suppose the IQ in a certain population is normally distributed with a mean of u=100 and standard devation is 15 A reseacher wants to knpw if a new drug affects IQ levels, so he recruits 20 patients to try it and records their IQ levels. The following code shows how to perform a one sample z-test in python to determine if the new drug causes a significant different in IQ levels:"
+      ],
+      "metadata": {
+        "id": "Kl0DmFWeeBKN"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from statsmodels.stats.weightstats import ztest as ztest\n",
+        "\n",
+        "# enter IQ levels for 20patients\n",
+        "data=[88,92,94,94,96,97,97,97,99,99,105,109,109,109,110,112,112,113,114,115]\n",
+        "\n",
+        "\n",
+        "ztest(data,value=100)      #ztest "
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8uwj59RLeCrs",
+        "outputId": "401b3c16-e04a-49c6-87dd-68f6109cb30f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "/usr/local/lib/python3.7/dist-packages/statsmodels/tools/_testing.py:19: FutureWarning: pandas.util.testing is deprecated. Use the functions in the public API at pandas.testing instead.\n",
+            "  import pandas.util.testing as tm\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "(1.5976240527147705, 0.1101266701438426)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 1
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "t-test"
+      ],
+      "metadata": {
+        "id": "gklmAYGHeQKh"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ages=[10,20,35,50,28,40,55,30,25,43,18,30,28,14,24,16,17,32,35,26,27,65,18,43,23,21,20,19,70]"
+      ],
+      "metadata": {
+        "id": "3PqaJdeReTH7"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "ages_mean=np.mean(ages)\n",
+        "ages_mean"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JsMrK5ZpeXfK",
+        "outputId": "435b4e89-3e69-478e-db8e-c08be3de7273"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "30.413793103448278"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 3
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "sample_size=10\n",
+        "age_sample=np.random.choice(ages,sample_size)\n",
+        "age_sample"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "cdVz-l5JebJq",
+        "outputId": "7c971d22-78ab-4e6d-cd1f-949753536344"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([35, 27, 70, 20, 20, 28, 17, 18, 30, 43])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 4
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from scipy.stats import ttest_1samp"
+      ],
+      "metadata": {
+        "id": "cYT2rXvcefA6"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ttest_1samp(age_sample,30)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "G4R3mgV8eiJe",
+        "outputId": "de908fd0-0152-4b53-b5e7-cb14bce71e87"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "Ttest_1sampResult(statistic=0.1577855049114652, pvalue=0.8781091915031761)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 6
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ttest_1samp(age_sample,31)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "OqTjBvj4ek-O",
+        "outputId": "1b62ae2f-89b2-4f4b-e4b9-184d2da9ff20"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "Ttest_1sampResult(statistic=-0.03944637622786613, pvalue=0.9693956764600766)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 7
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "ttest_1samp(age_sample,26)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "OHniX5r9enKx",
+        "outputId": "f866a50f-b39e-4e6e-a58a-c78067f571fb"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "Ttest_1sampResult(statistic=0.9467130294687905, pvalue=0.36850838794075025)"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 8
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Consider another\n",
+        "\n",
+        "# ages of the collage students students(population)\n",
+        "# 1 class student mean of all the ages"
+      ],
+      "metadata": {
+        "id": "gW1OKXLsepXE"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "import scipy.stats as stats\n",
+        "import math\n",
+        "np.random.seed(6)\n",
+        "school_ages=stats.poisson.rvs(loc=18,mu=35,size=1500)\n",
+        "classA_ages=stats.poisson.rvs(loc=18,mu=30,size=60)"
+      ],
+      "metadata": {
+        "id": "MxumbIAseu7A"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "school_ages"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "i2qMiezsev-9",
+        "outputId": "56542ea0-2e0f-46a4-c76f-735e260682fe"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([62, 59, 44, ..., 45, 52, 50])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 14
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "classA_ages"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "vhG8u7KqgZNH",
+        "outputId": "e0a22266-4968-4a3f-db79-c95b824913c3"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([52, 46, 40, 40, 47, 50, 51, 45, 44, 52, 46, 53, 43, 44, 51, 50, 54,\n",
+              "       42, 54, 45, 61, 53, 49, 46, 47, 41, 45, 51, 43, 45, 48, 50, 40, 52,\n",
+              "       44, 55, 54, 40, 45, 46, 54, 42, 46, 35, 51, 51, 46, 48, 47, 35, 52,\n",
+              "       52, 39, 44, 48, 40, 42, 46, 47, 45])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 15
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "classA_ages.mean()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ZeXGeY0SgcJH",
+        "outputId": "1e761567-3b81-408f-f836-a937ae07561f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "46.9"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 16
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "_,p_value=ttest_1samp(classA_ages,popmean=school_ages.mean())"
+      ],
+      "metadata": {
+        "id": "ANlUdzulgfyR"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "school_ages.mean()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ANk-IM-Vgjwh",
+        "outputId": "7a1a6527-1b6e-42b1-affe-ef1d5a6e1bfd"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "53.303333333333335"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 18
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "if p_value<=0.05:\n",
+        "  print(\"Accept H0\")\n",
+        "else:\n",
+        "   print(\"Reject H0\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "QmJ6gFMtgnBp",
+        "outputId": "230f08cc-0021-481f-9da0-b0c4731a054d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Accept H0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import seaborn as sns"
+      ],
+      "metadata": {
+        "id": "zLPBDt9Qgx8G"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# data.sns.load_dataset('iris')\n",
+        "# data.head()"
+      ],
+      "metadata": {
+        "id": "5h4lfYOdhAHU"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# df.corr()"
+      ],
+      "metadata": {
+        "id": "VromI7TuhC4l"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# sns.pairplot(df)"
+      ],
+      "metadata": {
+        "id": "rDICYYX6jHgL"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
